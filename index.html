@@ -625,6 +625,20 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,main::-webkit-scrollbar,#studyPa
 #klChallengeContent .kl-memory-choice.kl-memory-incorrect,
 #klChallengeContent .kl-memory-choice.kl-memory-incorrect:disabled{background:#512732!important;border:2px solid #ff7787!important;color:#fff!important;opacity:1!important;box-shadow:0 0 0 2px rgba(255,119,135,.2)!important}
 #klChallengeContent .kl-memory-choice.kl-memory-correct-answer:disabled{background:#193d35!important;border:2px solid #42c99c!important;color:#fff!important;opacity:1!important}
+</style><style id="kl-match-portal-final">
+body>#klChallengePlay.hidden{display:none!important}
+body>#klChallengePlay:not(.hidden){display:block!important;position:fixed!important;inset:0!important;z-index:2147483000!important;background:#101014!important;color:#f7f7fb!important;overflow:auto!important;-webkit-overflow-scrolling:touch!important;padding:calc(env(safe-area-inset-top,0px) + 18px) 16px calc(env(safe-area-inset-bottom,0px) + 28px)!important;box-sizing:border-box!important;opacity:1!important;visibility:visible!important}
+body>#klChallengePlay .kl-challenge-wrap{max-width:620px;margin:0 auto}
+body>#klChallengePlay .kl-match-headings,body>#klChallengePlay .kl-match-grid{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;gap:10px!important}
+body>#klChallengePlay .kl-match-headings{text-align:center;margin:12px 0 8px;color:#c4b5fd;font-size:13px}
+body>#klChallengePlay .kl-match-column{display:flex!important;flex-direction:column!important;gap:10px!important;min-width:0!important}
+body>#klChallengePlay .kl-match-cell{display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;min-height:68px!important;padding:10px 8px!important;background:#24242d!important;border:2px solid #454553!important;border-radius:13px!important;color:#f5f5f8!important;font-size:14px!important;font-weight:650!important;line-height:1.35!important;text-align:center!important;overflow-wrap:anywhere!important;opacity:1!important;box-shadow:none!important;transition:background .12s,border-color .12s!important}
+body>#klChallengePlay .kl-match-cell.kl-is-selected{background:#533b82!important;border-color:#d6b4ff!important;color:#fff!important;box-shadow:0 0 0 3px rgba(185,140,255,.35)!important}
+body>#klChallengePlay .kl-match-cell.kl-is-done{background:#164736!important;border-color:#4de4a4!important;color:#b9f5d8!important;opacity:.7!important}
+body>#klChallengePlay .kl-match-cell.kl-is-wrong{background:#622e3c!important;border-color:#ff8198!important;color:#fff!important}
+body>#klChallengePlay .kl-match-cell:focus-visible{outline:3px solid #d6b4ff!important;outline-offset:2px!important}
+body>#klChallengePlay .kl-memory-choice.kl-correct{background:#164736!important;border:2px solid #4de4a4!important;color:#fff!important;opacity:1!important}
+body>#klChallengePlay .kl-memory-choice.kl-wrong{background:#622e3c!important;border:2px solid #ff8198!important;color:#fff!important;opacity:1!important}
 </style></head><body><main><header><div><h1 class="kl-rgb-brand" aria-label="KelimeLab"><span class="kl-brand-word">Kelime</span><span class="kl-brand-rgb">Lab</span></h1></div><nav aria-label="Ana gezinme"><button aria-current="page" aria-pressed="true" class="primary tab-selected" id="studyTab">Kartlar</button><button aria-current="false" aria-pressed="false" id="quizTab">Sınav</button><button aria-current="false" aria-pressed="false" id="questsTab">XP</button><button aria-current="false" aria-pressed="false" id="difficultTab" type="button">Zor Kelimeler</button><button aria-expanded="false" aria-controls="klMoreMenu" id="klMoreTab" type="button">Diğer</button></nav><div id="klMoreMenu" class="kl-more-menu" hidden role="group" aria-label="Diğer bölümler"><button id="analyticsTab" type="button">📊 İstatistik</button><button id="grammarTab" type="button">📖 Gramer</button><button id="manageTab" type="button">📚 Kelimelerim</button><button id="klMoreSettings" type="button">⚙️ Ayarlar</button></div><button aria-label="Ayarlar" class="settings-icon-button" id="settingsTab" title="Ayarlar" type="button">⚙️</button></header><div class="stats"><div class="stat"><strong id="total">0</strong><small>Toplam kart</small></div><div class="stat"><strong id="due">0</strong><small>Çalışılacak</small></div><div class="stat"><strong id="learned">0</strong><small>Tekrar edilmiş</small></div></div><section class="panel" id="studyPanel"><div class="kl-mini-controls" id="klMiniControls" aria-label="Kelime çalışma ayarları">
 <button class="kl-mini-tile" type="button" data-kl-select="category" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-purple" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="kl-mini-caption">Deste</span><span class="kl-mini-value">Kelimeler</span></button>
 <button class="kl-mini-tile" type="button" data-kl-select="levelFilter" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm5 3v5c3 3 7 3 10 0v-5M22 9v7"/></svg></span><span class="kl-mini-caption">Seviye</span><span class="kl-mini-value">A1</span></button>
@@ -1321,6 +1335,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  const $=id=>document.getElementById(id);
  const modes={smart:['klSmartMode','klSmartSettings'],race:['klRaceMode','klRaceSettings'],match:['klMatchMode','klMatchSettings'],memory:['klMemoryMode','klMemorySettings']};
  const ids=Object.values(modes);
+ // Keep the game screen outside transformed/hidden tab panels.
+ const challengeOverlay=$('klChallengePlay');
+ if(challengeOverlay&&challengeOverlay.parentElement!==document.body)document.body.appendChild(challengeOverlay);
  let active='smart',round=null,clock=null,timeout=null;
  const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
  const norm=s=>String(s||'').trim().toLocaleLowerCase('tr-TR');
@@ -1379,31 +1396,43 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   clearRun();const cards=pool($('klMatchDeck').value).slice(0,6);
   if(cards.length<4){alert('Bu mücadele için en az 4 farklı kelime gerekli.');return}
   play('Kelime Eşleştirme');
-  const left=shuffle(cards.map((c,i)=>({id:i,side:'en',value:c.en})));const right=shuffle(cards.map((c,i)=>({id:i,side:'tr',value:c.tr})));const entries=left.flatMap((en,i)=>[en,right[i]]);
-  const grid=document.createElement('div');grid.className='kl-pairs';
+  const left=shuffle(cards.map((c,i)=>({id:i,side:'en',value:c.en})));
+  const right=shuffle(cards.map((c,i)=>({id:i,side:'tr',value:c.tr})));
+  const area=$('klChallengeContent');
+  const headings=document.createElement('div');headings.className='kl-match-headings';
+  for(const label of ['İngilizce','Türkçe']){const el=document.createElement('strong');el.textContent=label;headings.append(el)}
+  const grid=document.createElement('div');grid.className='kl-match-grid';
+  const lcol=document.createElement('div'),rcol=document.createElement('div');lcol.className='kl-match-column';rcol.className='kl-match-column';
+  grid.append(lcol,rcol);area.append(headings,grid);
   let selected=null,locked=false,found=0,mistakes=0,seconds=0;
   const status=$('klChallengeStatus');
   const update=()=>status.textContent=`${found}/${cards.length} eşleşme · ${mistakes} hata · ${seconds} sn`;
   update();clock=setInterval(()=>{seconds++;update()},1000);
-  entries.forEach(e=>{
-   const btn=document.createElement('button');btn.type='button';btn.className='kl-pair';btn.textContent=e.value;
+  const paint=(button,state)=>{
+   button.classList.toggle('kl-is-selected',state==='selected');
+   button.classList.toggle('kl-is-done',state==='done');
+   button.classList.toggle('kl-is-wrong',state==='wrong');
+   button.setAttribute('aria-pressed',String(state==='selected'));
+  };
+  function add(entry,col){
+   const btn=document.createElement('button');btn.type='button';btn.className='kl-match-cell';btn.textContent=entry.value;
    btn.onclick=()=>{
-    if(locked||btn.disabled||selected===btn)return;
-    if(!selected){selected=btn;btn.classList.add('selected');return}
-    const first=selected;selected=null;first.classList.remove('selected');
-    const other=entries.find(x=>x.button===first);
-    if(other.id===e.id&&other.side!==e.side){
-     btn.disabled=true;first.disabled=true;btn.classList.add('done');first.classList.add('done');
-     found++;update();
-     if(found===cards.length)finish('Harika! Bütün çiftleri buldun.',`${seconds} saniye · ${mistakes} hata`,startMatch);
+    if(locked||btn.disabled)return;
+    if(selected&&selected.button===btn){paint(btn,'');selected=null;return}
+    if(!selected){selected={...entry,button:btn};paint(btn,'selected');return}
+    if(selected.side===entry.side){paint(selected.button,'');selected={...entry,button:btn};paint(btn,'selected');return}
+    const first=selected;selected=null;
+    if(first.id===entry.id){
+     paint(first.button,'done');paint(btn,'done');first.button.disabled=true;btn.disabled=true;
+     found++;update();if(found===cards.length)timeout=setTimeout(()=>finish('Bütün eşleşmeler tamam!',`${seconds} saniye · ${mistakes} hata`,startMatch),500);
     }else{
-     mistakes++;update();locked=true;first.classList.add('wrong');btn.classList.add('wrong');
-     timeout=setTimeout(()=>{first.classList.remove('wrong');btn.classList.remove('wrong');locked=false},450);
+     mistakes++;update();locked=true;paint(first.button,'wrong');paint(btn,'wrong');
+     timeout=setTimeout(()=>{paint(first.button,'');paint(btn,'');locked=false},650);
     }
    };
-   e.button=btn;grid.append(btn);
-  });
-  const heads=document.createElement('div');heads.className='kl-column-head';for(const text of ['İngilizce','Türkçe']){const el=document.createElement('span');el.textContent=text;heads.append(el)}$('klChallengeContent').append(heads,grid);
+   col.append(btn);
+  }
+  left.forEach(e=>add(e,lcol));right.forEach(e=>add(e,rcol));
  }
  function startMemory(){
   clearRun();const cards=pool($('klMemoryDeck').value).slice(0,8);
