@@ -704,32 +704,16 @@ header nav button.tab-selected .kl-nav-icon,header nav button.tab-selected .kl-n
 .kl-study-swipe-row{min-height:29px}
 .kl-swipe-mini-icon{font-size:19px;line-height:1}
 .kl-mini-switch{margin-left:0}
-</style><style id="kl-restart-inline-icon-fix">
-#studyPanel .kl-study-swipe-row{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;width:100%!important;margin:8px 0 0!important;padding:0!important;min-height:40px!important}
-#studyPanel .kl-study-swipe-row .kl-study-swipe-label{margin:0!important;flex:0 0 auto!important}
-#studyPanel .kl-study-swipe-row #restartPractice{display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;width:43px!important;height:40px!important;min-height:40px!important;padding:0!important;margin:0!important;border:1px solid var(--deck-edge,#a58aff)!important;border-radius:11px!important;font-size:25px!important;font-weight:500!important;line-height:1!important;color:var(--deck-accent,#a58aff)!important;background:#282831!important;cursor:pointer!important}
-#studyPanel .kl-study-swipe-row #restartPractice.hidden{display:none!important}
-#studyPanel .kl-study-swipe-row #restartPractice:focus-visible{outline:2px solid var(--deck-accent,#a58aff)!important;outline-offset:2px!important}
-</style><style id="kl-study-action-row-definitive">
-#studyPanel #klStudyActionRow{
- display:grid!important;grid-template-columns:max-content minmax(0,1fr)!important;
- align-items:center!important;justify-content:stretch!important;
- width:100%!important;min-height:42px!important;gap:10px!important;
- margin:9px 0 4px!important;padding:0!important;position:relative!important;
-}
-#studyPanel #klStudyActionRow>.kl-study-swipe-label{
- grid-column:1!important;grid-row:1!important;justify-self:start!important;
- position:static!important;margin:0!important;max-width:max-content!important;
-}
-#studyPanel #klStudyActionRow>#restartPractice{
- grid-column:2!important;grid-row:1!important;justify-self:end!important;
- position:static!important;float:none!important;transform:none!important;
- display:inline-flex!important;width:42px!important;height:40px!important;
- min-height:40px!important;max-width:42px!important;margin:0!important;
- padding:0!important;font-size:25px!important;line-height:1!important;
- align-items:center!important;justify-content:center!important;
-}
+</style><style id="kl-study-action-balanced">
+#studyPanel #klStudyActionRow{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;width:100%!important;gap:10px!important;min-height:34px!important;margin:8px 0 4px!important;padding:0!important}
+#studyPanel #klStudyActionRow>.kl-study-swipe-label,
+#studyPanel #klStudyActionRow>#restartPractice{box-sizing:border-box!important;position:static!important;float:none!important;transform:none!important;flex:0 0 auto!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;height:34px!important;min-height:34px!important;max-height:34px!important;width:73px!important;min-width:73px!important;max-width:73px!important;margin:0!important;padding:4px 8px!important;border:1px solid var(--line,#44434e)!important;border-radius:11px!important;background:#282831!important;box-shadow:none!important}
+#studyPanel #klStudyActionRow>.kl-study-swipe-label{justify-content:space-between!important;gap:6px!important;cursor:pointer!important}
+#studyPanel #klStudyActionRow>#restartPractice{font-family:inherit!important;font-size:21px!important;font-weight:500!important;line-height:1!important;color:var(--deck-accent,#a58aff)!important;border-color:var(--deck-edge,#a58aff)!important;cursor:pointer!important}
 #studyPanel #klStudyActionRow>#restartPractice.hidden{display:none!important}
+#studyPanel #klStudyActionRow .kl-swipe-mini-icon{font-size:19px!important;line-height:1!important}
+#studyPanel #klStudyActionRow .kl-mini-switch{width:33px!important;height:19px!important;flex:none!important;margin:0!important}
+#studyPanel #klStudyActionRow>#restartPractice:focus-visible{outline:2px solid var(--deck-accent,#a58aff)!important;outline-offset:2px!important}
 </style></head><body><main><header><div><h1 class="kl-rgb-brand" aria-label="KelimeLab"><span class="kl-brand-word">Kelime</span><span class="kl-brand-rgb">Lab</span></h1></div><nav aria-label="Ana gezinme"><button aria-current="page" aria-pressed="true" class="primary tab-selected" id="studyTab">Kartlar</button><button aria-current="false" aria-pressed="false" id="quizTab">Sınav</button><button aria-current="false" aria-pressed="false" id="questsTab">XP</button><button aria-current="false" aria-pressed="false" id="difficultTab" type="button">Zor Kelimeler</button><button aria-expanded="false" aria-controls="klMoreMenu" id="klMoreTab" type="button">Diğer</button></nav><div id="klMoreMenu" class="kl-more-menu" hidden role="group" aria-label="Diğer bölümler"><button id="analyticsTab" type="button">📊 İstatistik</button><button id="grammarTab" type="button">📖 Gramer</button><button id="manageTab" type="button">📚 Kelimelerim</button><button id="klMoreSettings" type="button">⚙️ Ayarlar</button></div><button aria-label="Ayarlar" class="settings-icon-button" id="settingsTab" title="Ayarlar" type="button">⚙️</button></header><div class="stats"><div class="stat"><strong id="total">0</strong><small>Toplam kart</small></div><div class="stat"><strong id="due">0</strong><small>Çalışılacak</small></div><div class="stat"><strong id="learned">0</strong><small>Tekrar edilmiş</small></div></div><section class="panel" id="studyPanel"><div class="kl-mini-controls" id="klMiniControls" aria-label="Kelime çalışma ayarları">
 <button class="kl-mini-tile" type="button" data-kl-select="category" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-purple" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="kl-mini-caption">Deste</span><span class="kl-mini-value">Kelimeler</span></button>
 <button class="kl-mini-tile" type="button" data-kl-select="levelFilter" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm5 3v5c3 3 7 3 10 0v-5M22 9v7"/></svg></span><span class="kl-mini-caption">Seviye</span><span class="kl-mini-value">A1</span></button>
