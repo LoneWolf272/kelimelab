@@ -1404,9 +1404,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const grid=document.createElement('div');grid.className='kl-match-grid';
   const lcol=document.createElement('div'),rcol=document.createElement('div');lcol.className='kl-match-column';rcol.className='kl-match-column';
   grid.append(lcol,rcol);area.append(headings,grid);
-  let selected=null,locked=false,found=0,mistakes=0,seconds=0;
+  let selected=null,locked=false,found=0,mistakes=0,seconds=0,earnedXP=0;
   const status=$('klChallengeStatus');
-  const update=()=>status.textContent=`${found}/${cards.length} eşleşme · ${mistakes} hata · ${seconds} sn`;
+  const update=()=>status.textContent=`${found}/${cards.length} eşleşme · ${mistakes} hata · ${seconds} sn · +${earnedXP} XP`;
   update();clock=setInterval(()=>{seconds++;update()},1000);
   const paint=(button,state)=>{
    button.classList.toggle('kl-is-selected',state==='selected');
@@ -1424,7 +1424,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     const first=selected;selected=null;
     if(first.id===entry.id){
      paint(first.button,'done');paint(btn,'done');first.button.disabled=true;btn.disabled=true;
-     found++;update();if(found===cards.length)timeout=setTimeout(()=>finish('Bütün eşleşmeler tamam!',`${seconds} saniye · ${mistakes} hata`,startMatch),500);
+     found++;earnedXP+=3;if(typeof grantXP==='function')grantXP(3,'Kelime Eşleştirme doğru eşleşme');update();if(found===cards.length)timeout=setTimeout(()=>finish('Bütün eşleşmeler tamam!',`${seconds} saniye · ${mistakes} hata · +${earnedXP} XP`,startMatch),500);
     }else{
      mistakes++;update();locked=true;paint(first.button,'wrong');paint(btn,'wrong');
      timeout=setTimeout(()=>{paint(first.button,'');paint(btn,'');locked=false},650);
@@ -1442,7 +1442,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const preview=document.createElement('div');preview.className='kl-memory-preview';
   cards.forEach(c=>{const box=document.createElement('div');const strong=document.createElement('strong');strong.textContent=c.en;const small=document.createElement('small');small.textContent=c.tr;box.append(strong,small);preview.append(box)});
   area.append(preview);
-  let left=12,idx=0,correct=0;
+  let left=12,idx=0,correct=0,earnedXP=0;
   const renderPreview=()=>status.textContent=`Kelimeleri ezberle: ${left} saniye`;
   renderPreview();
   clock=setInterval(()=>{
@@ -1450,15 +1450,15 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    if(left<=0){clearInterval(clock);clock=null;ask()}
   },1000);
   function ask(){
-   if(idx>=cards.length){finish('Hafıza turu tamamlandı!',`${correct}/${cards.length} doğru cevap`,startMemory);return}
+   if(idx>=cards.length){finish('Hafıza turu tamamlandı!',`${correct}/${cards.length} doğru cevap · +${earnedXP} XP`,startMemory);return}
    area.replaceChildren();
-   const card=cards[idx];status.textContent=`Soru ${idx+1}/${cards.length} · ${correct} doğru`;
+   const card=cards[idx];status.textContent=`Soru ${idx+1}/${cards.length} · ${correct} doğru · +${earnedXP} XP`;
    const question=document.createElement('h3');question.textContent=`“${card.en}” ne demek?`;area.append(question);
    const distractors=shuffle(cards.filter(c=>c!==card&&norm(c.tr)!==norm(card.tr))).slice(0,3);
    shuffle([card,...distractors]).forEach(opt=>{
     const btn=document.createElement('button');btn.type='button';btn.className='kl-memory-choice';btn.textContent=opt.tr;
     btn.onclick=()=>{
-     const right=opt===card;if(right)correct++;
+     const right=opt===card;if(right){correct++;earnedXP+=3;if(typeof grantXP==='function')grantXP(3,'Hafıza Arenası doğru cevap');status.textContent=`Soru ${idx+1}/${cards.length} · ${correct} doğru · +${earnedXP} XP`;}
      // Show the tapped answer immediately, even after disabling the options.
      btn.classList.add(right?'kl-memory-correct':'kl-memory-incorrect');
      btn.setAttribute('aria-pressed','true');
