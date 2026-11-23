@@ -713,23 +713,20 @@ function klUnlockRatingAudio(){
  }catch(e){return null}
 }
 function klSoftRatingSound(kind){
+ // Single ultra-quiet, warm tap: no melody, no bright highs, no long tail.
  try{
   const ctx=klUnlockRatingAudio();if(!ctx)return;
-  const t=ctx.currentTime+0.006;
-  const notes=kind==='easy'?[[523.25,0],[659.25,.085]]:
-              kind==='hard'?[[392,0],[349.23,.09]]:
-              [[440,0],[493.88,.085]];
-  notes.forEach(([freq,offset])=>{
-   const osc=ctx.createOscillator(),gain=ctx.createGain();
-   osc.type='sine';osc.frequency.value=freq;
-   const start=t+offset;
-   gain.gain.setValueAtTime(.0001,start);
-   gain.gain.exponentialRampToValueAtTime(.13,start+.018);
-   gain.gain.exponentialRampToValueAtTime(.0001,start+.24);
-   osc.connect(gain);gain.connect(ctx.destination);
-   osc.start(start);osc.stop(start+.255);
-   osc.onended=()=>{osc.disconnect();gain.disconnect()};
-  });
+  const t=ctx.currentTime+0.005;
+  const osc=ctx.createOscillator(),gain=ctx.createGain();
+  osc.type='sine';
+  osc.frequency.setValueAtTime(kind==='easy'?285:kind==='hard'?245:265,t);
+  osc.frequency.exponentialRampToValueAtTime(kind==='easy'?235:205,t+.065);
+  gain.gain.setValueAtTime(.0001,t);
+  gain.gain.exponentialRampToValueAtTime(.009,t+.009);
+  gain.gain.exponentialRampToValueAtTime(.0001,t+.075);
+  osc.connect(gain);gain.connect(ctx.destination);
+  osc.start(t);osc.stop(t+.08);
+  osc.onended=()=>{osc.disconnect();gain.disconnect()};
  }catch(e){}
 }
 // Direct finger contact unlocks audio before any swipe animation or delayed click.
