@@ -882,6 +882,8 @@ function restartAnyDeck(){
   difficultStudy=false;
   $('reviewMode').value='all';
   practiceSeen.clear();
+  $('a1Order').value='sequential';
+  kelimeSettings.shuffle=false;
   const deck=$('category').value;
   if(deck!=='Kelimeler' && ['Sıfatlar','Phrasal Verbs','Collocations','Verb Patterns'].includes(deck)){
     // Older versions left A1 selected when switching decks, even when that deck has no A1 cards.
