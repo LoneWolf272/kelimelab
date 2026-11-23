@@ -584,6 +584,16 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,main::-webkit-scrollbar,#studyPa
 #quizPanel .kl-memory-choice:disabled{opacity:.65}
 #quizPanel .kl-challenge-finish{padding:20px 10px;text-align:center}
 #quizPanel .kl-challenge-finish button{margin:8px}
+</style><style id="kl-mode-selected-fix">
+/* Explicit selection states for all four modes; same precedence across themes. */
+#quizPanel .kl-exam-modes .kl-exam-mode[aria-pressed="false"]{background:#202027!important;border:1px solid #3b3b45!important;box-shadow:none!important;transform:none!important}
+#quizPanel .kl-exam-modes #klSmartMode[aria-pressed="true"]{background:#292447!important;border:2px solid #a99bff!important;box-shadow:inset 0 0 0 1px rgba(169,155,255,.2),0 0 0 1px rgba(169,155,255,.13)!important}
+#quizPanel .kl-exam-modes #klRaceMode[aria-pressed="true"]{background:#33291e!important;border:2px solid #f2b84b!important;box-shadow:inset 0 0 0 1px rgba(242,184,75,.2),0 0 0 1px rgba(242,184,75,.13)!important}
+#quizPanel .kl-exam-modes #klMatchMode[aria-pressed="true"]{background:#182e32!important;border:2px solid #55cdbb!important;box-shadow:inset 0 0 0 1px rgba(85,205,187,.2)!important}
+#quizPanel .kl-exam-modes #klMemoryMode[aria-pressed="true"]{background:#30253e!important;border:2px solid #b69afa!important;box-shadow:inset 0 0 0 1px rgba(182,154,250,.2)!important}
+#quizPanel .kl-exam-modes .kl-exam-mode[aria-pressed="true"]{position:relative!important}
+#quizPanel .kl-exam-modes .kl-exam-mode[aria-pressed="true"]::after{content:"✓";position:absolute;top:7px;right:9px;font-size:12px;font-weight:800;color:#f5f3ff}
+#quizPanel .kl-exam-modes .kl-exam-mode{box-sizing:border-box!important}
 </style></head><body><main><header><div><h1 class="kl-rgb-brand" aria-label="KelimeLab"><span class="kl-brand-word">Kelime</span><span class="kl-brand-rgb">Lab</span></h1></div><nav aria-label="Ana gezinme"><button aria-current="page" aria-pressed="true" class="primary tab-selected" id="studyTab">Kartlar</button><button aria-current="false" aria-pressed="false" id="quizTab">Sınav</button><button aria-current="false" aria-pressed="false" id="questsTab">XP</button><button aria-current="false" aria-pressed="false" id="difficultTab" type="button">Zor Kelimeler</button><button aria-expanded="false" aria-controls="klMoreMenu" id="klMoreTab" type="button">Diğer</button></nav><div id="klMoreMenu" class="kl-more-menu" hidden role="group" aria-label="Diğer bölümler"><button id="analyticsTab" type="button">📊 İstatistik</button><button id="grammarTab" type="button">📖 Gramer</button><button id="manageTab" type="button">📚 Kelimelerim</button><button id="klMoreSettings" type="button">⚙️ Ayarlar</button></div><button aria-label="Ayarlar" class="settings-icon-button" id="settingsTab" title="Ayarlar" type="button">⚙️</button></header><div class="stats"><div class="stat"><strong id="total">0</strong><small>Toplam kart</small></div><div class="stat"><strong id="due">0</strong><small>Çalışılacak</small></div><div class="stat"><strong id="learned">0</strong><small>Tekrar edilmiş</small></div></div><section class="panel" id="studyPanel"><div class="kl-mini-controls" id="klMiniControls" aria-label="Kelime çalışma ayarları">
 <button class="kl-mini-tile" type="button" data-kl-select="category" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-purple" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="kl-mini-caption">Deste</span><span class="kl-mini-value">Kelimeler</span></button>
 <button class="kl-mini-tile" type="button" data-kl-select="levelFilter" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm5 3v5c3 3 7 3 10 0v-5M22 9v7"/></svg></span><span class="kl-mini-caption">Seviye</span><span class="kl-mini-value">A1</span></button>
@@ -649,9 +659,11 @@ if(hiddenNow.length){
  const seen=new Set(archived.map(c=>String(c.category)+'|'+String(c.en).trim().toLowerCase()));
  for(const c of hiddenNow){const key=String(c.category)+'|'+String(c.en).trim().toLowerCase();if(!seen.has(key)){archived.push(c);seen.add(key)}}
  try{localStorage.setItem(HIDDEN_ARCHIVE_KEY,JSON.stringify(archived))}catch{}
- cards=cards.filter(c=>!HIDDEN_DECKS.has(c.category));window.klChallengeCards=()=>cards.filter(c=>c&&c.en&&c.tr);
+ cards=cards.filter(c=>!HIDDEN_DECKS.has(c.category));
  localStorage.setItem(KEY,JSON.stringify(cards));
 }
+ // Always expose the active card collection, even if there are no hidden decks.
+ window.klChallengeCards=()=>cards.filter(c=>c&&c.en&&c.tr);
  // Separate sequential/random preference for each numbered vocabulary deck.
  const ORDER_KEY='kelimelab-deck-order-v2';
  const ORDER_DECKS=['A1','A2','B1'];
