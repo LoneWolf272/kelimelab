@@ -700,7 +700,35 @@ const practice=$('reviewMode').value!=='due'&&!difficultStudy;
 const available=practice?pool.filter(c=>!practiceSeen.has(c.id||c.en+'|'+c.category)):pool;
 current=available.length?((ORDER_DECKS.includes(activeWordDeck())?($('a1Order').value==='random'):kelimeSettings.shuffle)?available[Math.floor(Math.random()*available.length)]:available[0]):null;
 // A card counts as studied only after the user reveals it and chooses a rating.
-$('restartPractice').classList.remove('hidden');$('restartPractice').textContent=(!current && !available.length)?'↻ Bu desteyi yeniden çalış':'↻ Desteyi baştan çalış';applyDeckTheme();$('ratings').classList.add('hidden');$('side').textContent='İNGİLİZCE • Cevap için dokun';$('word').textContent=current?current.en:(practice?'🎉 Tur tamamlandı!':'🎉 Bugünlük bitti!');$('wordType').textContent=current?'('+(current.pos||'word')+')':'';$('example').textContent=current?(current.ex||''):(practice?'Yeniden çalışmak için “Bu desteyi yeniden çalış” butonuna bas.':'Serbest tekrar modunu seçerek bitirdiğin kelimeleri hemen yeniden çalışabilirsin.');$('exampleTr').textContent='';$('exampleTr').className='example-translation';if(current&&kelimeSettings.autoSpeak)setTimeout(()=>speak(current.en),80);$('status').textContent=available.length?`${available.length} kart ${practice?'bu turda kaldı':'çalışılmayı bekliyor'}`:(practice?'Bu turdaki tüm kartları gördün. Yeniden başlatabilirsin.':'Şu anda bekleyen kart yok. Serbest tekrar modunu seçebilirsin.');$('flash').disabled=!current;updateSwipeMode();updateUsage();stats();updateDifficultStar()}function speak(text){if(!text)return;if(!('speechSynthesis' in window)){alert('Bu tarayıcı sesli telaffuzu desteklemiyor. Chrome, Safari veya Edge ile deneyebilirsin.');return;}speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='en-US';utterance.rate=Number(kelimeSettings.rate)||0.85;speechSynthesis.speak(utterance)}$('speakWord').onclick=()=>speak(current&&current.en);$('speakSentence').onclick=()=>speak(current&&current.ex);$('flash').addEventListener('click',()=>{if(swipeIgnoreClick){swipeIgnoreClick=false;return}if(!current)return;revealed=!revealed;$('side').textContent=revealed?'TÜRKÇE':'İNGİLİZCE • Cevap için dokun';$('word').textContent=revealed?current.tr:current.en;$('wordType').textContent=revealed?'':'('+(current.pos||'word')+')';$('example').textContent=revealed?'':(current.ex||'');$('exampleTr').textContent=revealed?(current.exTr||'') : '';$('exampleTr').className='example-translation'+'';$('ratings').classList.toggle('hidden',!revealed)});document.querySelectorAll('[data-rating]').forEach(btn=>btn.addEventListener('click',()=>{if(!current||(!revealed&&!swipeRating))return;const r=btn.dataset.rating;
+$('restartPractice').classList.remove('hidden');$('restartPractice').textContent=(!current && !available.length)?'↻ Bu desteyi yeniden çalış':'↻ Desteyi baştan çalış';applyDeckTheme();$('ratings').classList.add('hidden');$('side').textContent='İNGİLİZCE • Cevap için dokun';$('word').textContent=current?current.en:(practice?'🎉 Tur tamamlandı!':'🎉 Bugünlük bitti!');$('wordType').textContent=current?'('+(current.pos||'word')+')':'';$('example').textContent=current?(current.ex||''):(practice?'Yeniden çalışmak için “Bu desteyi yeniden çalış” butonuna bas.':'Serbest tekrar modunu seçerek bitirdiğin kelimeleri hemen yeniden çalışabilirsin.');$('exampleTr').textContent='';$('exampleTr').className='example-translation';if(current&&kelimeSettings.autoSpeak)setTimeout(()=>speak(current.en),80);$('status').textContent=available.length?`${available.length} kart ${practice?'bu turda kaldı':'çalışılmayı bekliyor'}`:(practice?'Bu turdaki tüm kartları gördün. Yeniden başlatabilirsin.':'Şu anda bekleyen kart yok. Serbest tekrar modunu seçebilirsin.');$('flash').disabled=!current;updateSwipeMode();updateUsage();stats();updateDifficultStar()}function speak(text){if(!text)return;if(!('speechSynthesis' in window)){alert('Bu tarayıcı sesli telaffuzu desteklemiyor. Chrome, Safari veya Edge ile deneyebilirsin.');return;}speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(text);utterance.lang='en-US';utterance.rate=Number(kelimeSettings.rate)||0.85;speechSynthesis.speak(utterance)}$('speakWord').onclick=()=>speak(current&&current.en);$('speakSentence').onclick=()=>speak(current&&current.ex);$('flash').addEventListener('click',()=>{if(swipeIgnoreClick){swipeIgnoreClick=false;return}if(!current)return;revealed=!revealed;$('side').textContent=revealed?'TÜRKÇE':'İNGİLİZCE • Cevap için dokun';$('word').textContent=revealed?current.tr:current.en;$('wordType').textContent=revealed?'':'('+(current.pos||'word')+')';$('example').textContent=revealed?'':(current.ex||'');$('exampleTr').textContent=revealed?(current.exTr||'') : '';$('exampleTr').className='example-translation'+'';$('ratings').classList.toggle('hidden',!revealed)});
+// KelimeLab: soft, short, synthesized feedback tones (no external audio files).
+let klRatingAudio=null;
+function klSoftRatingSound(kind){
+  try{
+    const AudioCtor=window.AudioContext||window.webkitAudioContext;
+    if(!AudioCtor)return;
+    if(!klRatingAudio)klRatingAudio=new AudioCtor();
+    const ctx=klRatingAudio;
+    if(ctx.state==='suspended')ctx.resume().catch(()=>{});
+    const now=ctx.currentTime+0.012;
+    const notes=kind==='easy'?[{f:523.25,t:0},{f:659.25,t:.085}]:
+                kind==='hard'?[{f:392,t:0},{f:349.23,t:.09}]:
+                [{f:440,t:0},{f:493.88,t:.085}];
+    notes.forEach(({f,t})=>{
+      const osc=ctx.createOscillator(),gain=ctx.createGain();
+      osc.type='sine';osc.frequency.setValueAtTime(f,now+t);
+      const start=now+t,end=start+.22;
+      gain.gain.setValueAtTime(0.0001,start);
+      gain.gain.exponentialRampToValueAtTime(.045,start+.025);
+      gain.gain.exponentialRampToValueAtTime(.0001,end);
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.start(start);osc.stop(end+.012);
+      osc.onended=()=>{osc.disconnect();gain.disconnect()};
+    });
+  }catch(e){} // Never block card review if audio is unavailable.
+}
+
+document.querySelectorAll('[data-rating]').forEach(btn=>btn.addEventListener('click',()=>{if(!current||(!revealed&&!swipeRating))return;const r=btn.dataset.rating;klSoftRatingSound(r);
 if(r==='hard' && $('reviewMode').value!=='due' && !difficultStudy)flagDifficult(current,'review');
 if($('reviewMode').value!=='due'&&!difficultStudy){
  current.studyCount=Number(current.studyCount||0)+1;current.lastStudiedAt=new Date().toISOString();klRecordStudied(current);save();renderA1Progress();
