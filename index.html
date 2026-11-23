@@ -557,6 +557,33 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,main::-webkit-scrollbar,#studyPa
 #quizPanel .kl-exam-fields select{display:block!important;box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;height:43px!important;min-height:43px!important;margin:0!important;padding:8px 10px!important;border:1px solid #444450!important;border-radius:11px!important;background:#24242d!important;color:#f5f5f7!important;font-size:13px!important;overflow:hidden;text-overflow:ellipsis}
 #quizPanel .kl-exam-launch{display:block;width:100%;min-height:45px;margin:17px 0 0!important;border-radius:12px;font-size:15px}
 @media(max-width:350px){#quizPanel .kl-exam-mode strong{font-size:12px}#quizPanel .kl-exam-fields select{font-size:12px}}
+</style><style id="kl-challenge-styles">
+#quizPanel .kl-exam-modes{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+#quizPanel .kl-exam-mode{min-width:0!important;padding:12px 6px!important}
+#quizPanel .kl-exam-mode strong{white-space:normal!important;font-size:13px!important}
+#quizPanel #klMatchMode.active{background:#182e32!important;border-color:#55cdbb!important}
+#quizPanel #klMemoryMode.active{background:#30253e!important;border-color:#b69afa!important}
+#quizPanel .kl-challenge-setup.hidden,#quizPanel #klChallengePlay.hidden{display:none!important}
+#quizPanel .kl-exam-settings:not(.hidden){display:block!important}
+#quizPanel .kl-exam-settings .kl-exam-fields{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+#quizPanel .kl-exam-fields label{min-width:0!important}
+#quizPanel .kl-exam-fields select{width:100%!important;min-width:0!important;max-width:100%!important}
+#quizPanel .kl-exam-launch{margin-top:14px!important;width:100%!important}
+#quizPanel .kl-challenge-top{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+#quizPanel #klChallengeBack{font-size:12px;padding:8px 10px;border-radius:10px}
+#quizPanel #klChallengeStatus{color:#c6c6d3;font-size:13px}
+#quizPanel .kl-pairs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#quizPanel .kl-pair{min-width:0;min-height:65px;border:1px solid #4a4a58;background:#24242d;color:#f5f5f7;border-radius:12px;padding:9px 6px;overflow-wrap:anywhere;font-size:13px;font-weight:600}
+#quizPanel .kl-pair.selected{border-color:#9d8dff;background:#302a50}
+#quizPanel .kl-pair.done{border-color:#36bc89;background:#143629;opacity:.6}
+#quizPanel .kl-pair.wrong{border-color:#ef717b;background:#48252d}
+#quizPanel .kl-memory-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+#quizPanel .kl-memory-preview>div{border:1px solid #494959;background:#24242d;border-radius:10px;padding:10px;font-size:13px}
+#quizPanel .kl-memory-preview small{display:block;color:#a9a9bb;margin-top:5px}
+#quizPanel .kl-memory-choice{display:block;width:100%;text-align:left;margin:7px 0;padding:13px;background:#24242d;border:1px solid #4a4a58;color:#f6f6fa;border-radius:12px}
+#quizPanel .kl-memory-choice:disabled{opacity:.65}
+#quizPanel .kl-challenge-finish{padding:20px 10px;text-align:center}
+#quizPanel .kl-challenge-finish button{margin:8px}
 </style></head><body><main><header><div><h1 class="kl-rgb-brand" aria-label="KelimeLab"><span class="kl-brand-word">Kelime</span><span class="kl-brand-rgb">Lab</span></h1></div><nav aria-label="Ana gezinme"><button aria-current="page" aria-pressed="true" class="primary tab-selected" id="studyTab">Kartlar</button><button aria-current="false" aria-pressed="false" id="quizTab">Sınav</button><button aria-current="false" aria-pressed="false" id="questsTab">XP</button><button aria-current="false" aria-pressed="false" id="difficultTab" type="button">Zor Kelimeler</button><button aria-expanded="false" aria-controls="klMoreMenu" id="klMoreTab" type="button">Diğer</button></nav><div id="klMoreMenu" class="kl-more-menu" hidden role="group" aria-label="Diğer bölümler"><button id="analyticsTab" type="button">📊 İstatistik</button><button id="grammarTab" type="button">📖 Gramer</button><button id="manageTab" type="button">📚 Kelimelerim</button><button id="klMoreSettings" type="button">⚙️ Ayarlar</button></div><button aria-label="Ayarlar" class="settings-icon-button" id="settingsTab" title="Ayarlar" type="button">⚙️</button></header><div class="stats"><div class="stat"><strong id="total">0</strong><small>Toplam kart</small></div><div class="stat"><strong id="due">0</strong><small>Çalışılacak</small></div><div class="stat"><strong id="learned">0</strong><small>Tekrar edilmiş</small></div></div><section class="panel" id="studyPanel"><div class="kl-mini-controls" id="klMiniControls" aria-label="Kelime çalışma ayarları">
 <button class="kl-mini-tile" type="button" data-kl-select="category" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-purple" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg></span><span class="kl-mini-caption">Deste</span><span class="kl-mini-value">Kelimeler</span></button>
 <button class="kl-mini-tile" type="button" data-kl-select="levelFilter" aria-haspopup="dialog"><span class="kl-mini-icon kl-mini-green" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm5 3v5c3 3 7 3 10 0v-5M22 9v7"/></svg></span><span class="kl-mini-caption">Seviye</span><span class="kl-mini-value">A1</span></button>
@@ -571,12 +598,17 @@ html::-webkit-scrollbar,body::-webkit-scrollbar,main::-webkit-scrollbar,#studyPa
 <div class="kl-exam-modes" role="group" aria-label="Sınav modu seçimi">
 <button type="button" class="kl-exam-mode active" id="klSmartMode" aria-pressed="true"><span class="kl-mode-symbol" aria-hidden="true">♧</span><strong>Akıllı Sınav</strong><small>Bilgini ölç</small></button>
 <button type="button" class="kl-exam-mode" id="klRaceMode" aria-pressed="false"><span class="kl-mode-symbol kl-zap" aria-hidden="true">ϟ</span><strong>Kelime Yarışı</strong><small>Zamana karşı</small></button>
+<button type="button" class="kl-exam-mode" id="klMatchMode" aria-pressed="false"><span class="kl-mode-symbol" aria-hidden="true">⌁</span><strong>Kelime Eşleştirme</strong><small>Çiftleri bul</small></button>
+<button type="button" class="kl-exam-mode" id="klMemoryMode" aria-pressed="false"><span class="kl-mode-symbol" aria-hidden="true">◇</span><strong>Hafıza Arenası</strong><small>Hatırla ve seç</small></button>
 </div>
 <div class="kl-exam-settings" id="klSmartSettings"><div class="kl-exam-settings-head"><strong>Akıllı Sınav Ayarları</strong><small>Yanlış bildiğin kelimelere öncelik verilir.</small></div>
 <div class="kl-exam-fields"><label>Deste<select id="quizCategory"><option value="">Tüm desteler</option></select></label><label>Soru türü<select id="quizMode"><option value="mixed">Karışık</option><option value="choice">4 seçenekli</option><option value="gap">Boşluk doldurma</option></select></label><label>Soru sayısı<select id="quizCount"><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option><option>75</option><option>100</option><option>150</option><option>200</option><option>300</option><option>500</option><option value="all">Tüm kelimeler</option></select></label></div>
 <button class="primary kl-exam-launch" id="quizStart">▶ Sınavı başlat</button></div>
 <div class="kl-speed-setup kl-exam-settings hidden" id="klRaceSettings"><div class="kl-exam-settings-head"><strong>Kelime Yarışı Ayarları</strong><small>Süre dolmadan hedefe ulaş. Son 15 saniyede bonus XP!</small></div>
 <div class="kl-exam-fields"><label>Deste<select id="speedCategory"><option value="">Tüm desteler</option></select></label><label>Hedef<select id="speedTarget"><option value="25">25 kelime</option><option value="50" selected>50 kelime</option><option value="75">75 kelime</option><option value="100">100 kelime</option></select></label><label>Süre<select id="speedDuration"><option value="30">30 saniye</option><option value="60" selected>60 saniye</option><option value="90">90 saniye</option><option value="120">120 saniye</option></select></label></div><button type="button" class="primary kl-exam-launch" id="speedStart">▶ Yarışı başlat</button></div>
+<div class="kl-exam-settings hidden kl-challenge-setup" id="klMatchSettings"><div class="kl-exam-settings-head"><strong>Kelime Eşleştirme</strong><small>İngilizce ve Türkçe kelimeleri doğru eşleştir. Süreni iyileştir!</small></div><div class="kl-exam-fields"><label>Deste<select id="klMatchDeck"><option value="">Tüm desteler</option></select></label></div><button class="primary kl-exam-launch" type="button" id="klMatchStart">Eşleştirmeyi başlat</button></div>
+<div class="kl-exam-settings hidden kl-challenge-setup" id="klMemorySettings"><div class="kl-exam-settings-head"><strong>Hafıza Arenası</strong><small>Önce 8 kelimeyi ezberle, sonra anlamlarını hatırla.</small></div><div class="kl-exam-fields"><label>Deste<select id="klMemoryDeck"><option value="">Tüm desteler</option></select></label></div><button class="primary kl-exam-launch" type="button" id="klMemoryStart">Hafıza arenasını başlat</button></div>
+<div id="klChallengePlay" class="hidden" aria-live="polite"><div class="kl-challenge-top"><button type="button" id="klChallengeBack">← Modlara dön</button><strong id="klChallengeTitle"></strong></div><p id="klChallengeStatus"></p><div id="klChallengeContent"></div></div>
 <div id="speedResult" class="kl-speed-result hidden" role="status" aria-live="polite"><div class="kl-speed-result-top"><span>🏁 YARIŞ SONUCU</span><strong id="speedResultBadge">Tamamlandı</strong></div><h3 id="speedResultTitle">Yarış tamamlandı!</h3><p id="speedResultDetail"></p><div class="kl-speed-result-grid"><div><small>Doğru</small><strong id="speedResultCorrect">0</strong></div><div><small>Başarı</small><strong id="speedResultAccuracy">0%</strong></div><div><small>Kazanılan XP</small><strong id="speedResultXP">+0</strong></div></div><button type="button" class="primary" id="speedRetry">↻ Yeniden yarış</button></div><div id="speedHUD" class="hidden" aria-live="off"><div class="kl-speed-stats"><strong id="speedClock">01:00</strong><strong id="speedScore">0 / 50</strong><strong id="speedXP">+0 XP</strong></div><div class="kl-speed-track"><i id="speedBar"></i></div><p id="speedBonus" aria-live="polite">Her doğru cevap +3 XP · Son 15 saniye bonus!</p><button type="button" id="speedStop">Testi bitir</button></div><div class="hidden" id="quizBody"><p id="quizProgress"></p><h3 id="quizQuestion"></h3><div class="quiz-choices" id="quizChoices"></div><form class="hidden" id="quizAnswerForm"><input autocomplete="off" id="quizAnswer" placeholder="Cevabını yaz"/><button class="primary" type="submit">Kontrol et</button></form><p aria-live="polite" id="quizFeedback"></p><button class="primary hidden" id="quizNext">Sonraki soru →</button></div></section><section class="panel hidden kl-exam-screen" id="examRunPanel" aria-label="Aktif sınav"><div class="kl-exam-head"><button id="examBack" type="button">← Sınavlara dön</button><div><h2 id="examRunTitle">🧠 Sınav</h2><p id="examRunSubtitle">Soruları cevapla, ilerlemeni takip et.</p></div></div><div id="examRunContent"></div><div id="smartResult" class="kl-speed-result hidden" role="status"><div class="kl-speed-result-top">🏁 SINAV SONUCU</div><h3 id="smartResultTitle">Sınav tamamlandı!</h3><div class="kl-speed-result-grid"><div><small>Doğru</small><strong id="smartResultCorrect">0</strong></div><div><small>Başarı</small><strong id="smartResultAccuracy">0%</strong></div><div><small>Yanlış</small><strong id="smartResultWrong">0</strong></div></div><button class="primary" type="button" id="smartRetry">↻ Yeniden sınav</button><button type="button" id="smartHome">← Sınav seçimine dön</button></div></section><section class="panel hidden" id="analyticsPanel"><h2>📊 Gelişim paneli</h2><div class="stats"><div class="stat"><strong id="aReviewed">0</strong><small>Tekrar edilen kart</small></div><div class="stat"><strong id="aAccuracy">—</strong><small>Sınav doğruluğu</small></div><div class="stat"><strong id="aStreak">0</strong><small>Günlük seri</small></div></div><h3>Tekrar durumu</h3><div id="reviewBreakdown"></div><h3>Son 7 gün</h3><div class="week-bars" id="weekBars"></div><h3>Sınav geçmişi</h3><ul id="quizHistory"></ul><div class="actions"><button id="exportBackup">⬇️ Yedek indir</button><button id="importBackup">⬆️ Yedek yükle</button><input accept="application/json,.json" class="hidden" id="backupFile" type="file"/></div><p>Yedekleme kartları, tekrar geçmişini ve sınav sonuçlarını içerir. Aynı tarayıcıda veriler otomatik kaydedilir.</p></section><section class="panel hidden" id="questsPanel">
 <h2><span class="kl-heading-icon kl-yellow" data-kl-icon="trophy"></span> XP ve Günlük Görevler</h2>
 <p>Her gün çalışarak XP kazan, seviyeni yükselt ve görev ödüllerini topla.</p>
@@ -617,7 +649,7 @@ if(hiddenNow.length){
  const seen=new Set(archived.map(c=>String(c.category)+'|'+String(c.en).trim().toLowerCase()));
  for(const c of hiddenNow){const key=String(c.category)+'|'+String(c.en).trim().toLowerCase();if(!seen.has(key)){archived.push(c);seen.add(key)}}
  try{localStorage.setItem(HIDDEN_ARCHIVE_KEY,JSON.stringify(archived))}catch{}
- cards=cards.filter(c=>!HIDDEN_DECKS.has(c.category));
+ cards=cards.filter(c=>!HIDDEN_DECKS.has(c.category));window.klChallengeCards=()=>cards.filter(c=>c&&c.en&&c.tr);
  localStorage.setItem(KEY,JSON.stringify(cards));
 }
  // Separate sequential/random preference for each numbered vocabulary deck.
@@ -1226,12 +1258,133 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
-</script><script id="kl-exam-hub-switch">
+</script><script id="kl-challenge-engine">
 (function(){
- const smart=document.getElementById('klSmartMode'),race=document.getElementById('klRaceMode');
- const smartSettings=document.getElementById('klSmartSettings'),raceSettings=document.getElementById('klRaceSettings');
- if(!smart||!race||!smartSettings||!raceSettings)return;
- function choose(which){const isSmart=which==='smart';smart.classList.toggle('active',isSmart);race.classList.toggle('active',!isSmart);smart.setAttribute('aria-pressed',String(isSmart));race.setAttribute('aria-pressed',String(!isSmart));smartSettings.classList.toggle('hidden',!isSmart);raceSettings.classList.toggle('hidden',isSmart)}
- smart.addEventListener('click',()=>choose('smart'));race.addEventListener('click',()=>choose('race'));choose('smart');
+ const $=id=>document.getElementById(id);
+ const modes={smart:['klSmartMode','klSmartSettings'],race:['klRaceMode','klRaceSettings'],match:['klMatchMode','klMatchSettings'],memory:['klMemoryMode','klMemorySettings']};
+ const ids=Object.values(modes);
+ let active='smart',round=null,clock=null,timeout=null;
+ const shuffle=a=>{const b=[...a];for(let i=b.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b};
+ const norm=s=>String(s||'').trim().toLocaleLowerCase('tr-TR');
+ function pool(deck){
+  const raw=typeof window.klChallengeCards==='function'?window.klChallengeCards():[];
+  const seen=new Set();
+  return shuffle(raw.filter(c=>{
+   if(deck&&c.category!==deck)return false;
+   const key=norm(c.en)+'|'+norm(c.tr);
+   if(!c.en||!c.tr||seen.has(key))return false;
+   seen.add(key);return true;
+  }));
+ }
+ function fillDecks(){
+  const cards=pool('');
+  const cats=[...new Set(cards.map(c=>c.category).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'tr'));
+  for(const id of ['klMatchDeck','klMemoryDeck']){
+   const select=$(id),old=select.value;
+   select.replaceChildren(new Option('Tüm desteler',''));
+   cats.forEach(cat=>select.add(new Option(cat,cat)));
+   if(cats.includes(old))select.value=old;
+  }
+ }
+ function clearRun(){if(clock)clearInterval(clock);if(timeout)clearTimeout(timeout);clock=null;timeout=null;round=null}
+ function choose(mode){
+  if(!modes[mode])return;
+  clearRun();active=mode;
+  $('klChallengePlay').classList.add('hidden');
+  $('klChallengePlay').style.display='none';
+  ids.forEach(([button,panel])=>{
+   $(button).classList.toggle('active',button===modes[mode][0]);
+   $(button).setAttribute('aria-pressed',String(button===modes[mode][0]));
+   $(panel).classList.toggle('hidden',panel!==modes[mode][1]);
+   $(panel).style.display=panel===modes[mode][1]?'block':'none';
+  });
+  fillDecks();
+ }
+ function play(title){
+  ids.forEach(([,panel])=>{$(panel).classList.add('hidden');$(panel).style.display='none'});
+  $('klChallengePlay').classList.remove('hidden');$('klChallengePlay').style.display='block';
+  $('klChallengeTitle').textContent=title;
+  $('klChallengeContent').replaceChildren();
+ }
+ function finish(title,detail,retry){
+  clearRun();$('klChallengeStatus').textContent='';
+  const area=$('klChallengeContent');area.replaceChildren();
+  const box=document.createElement('div');box.className='kl-challenge-finish';
+  const h=document.createElement('h3');h.textContent=title;
+  const p=document.createElement('p');p.textContent=detail;
+  const again=document.createElement('button');again.className='primary';again.textContent='Yeniden oyna';again.onclick=retry;
+  const back=document.createElement('button');back.textContent='Modlara dön';back.onclick=()=>choose(active);
+  box.append(h,p,again,back);area.append(box);
+ }
+ function startMatch(){
+  clearRun();const cards=pool($('klMatchDeck').value).slice(0,6);
+  if(cards.length<4){alert('Bu mücadele için en az 4 farklı kelime gerekli.');return}
+  play('Kelime Eşleştirme');
+  const entries=shuffle(cards.flatMap((c,i)=>[{id:i,side:'en',value:c.en},{id:i,side:'tr',value:c.tr}]));
+  const grid=document.createElement('div');grid.className='kl-pairs';
+  let selected=null,locked=false,found=0,mistakes=0,seconds=0;
+  const status=$('klChallengeStatus');
+  const update=()=>status.textContent=`${found}/${cards.length} eşleşme · ${mistakes} hata · ${seconds} sn`;
+  update();clock=setInterval(()=>{seconds++;update()},1000);
+  entries.forEach(e=>{
+   const btn=document.createElement('button');btn.type='button';btn.className='kl-pair';btn.textContent=e.value;
+   btn.onclick=()=>{
+    if(locked||btn.disabled||selected===btn)return;
+    if(!selected){selected=btn;btn.classList.add('selected');return}
+    const first=selected;selected=null;first.classList.remove('selected');
+    const other=entries.find(x=>x.button===first);
+    if(other.id===e.id&&other.side!==e.side){
+     btn.disabled=true;first.disabled=true;btn.classList.add('done');first.classList.add('done');
+     found++;update();
+     if(found===cards.length)finish('Harika! Bütün çiftleri buldun.',`${seconds} saniye · ${mistakes} hata`,startMatch);
+    }else{
+     mistakes++;update();locked=true;first.classList.add('wrong');btn.classList.add('wrong');
+     timeout=setTimeout(()=>{first.classList.remove('wrong');btn.classList.remove('wrong');locked=false},450);
+    }
+   };
+   e.button=btn;grid.append(btn);
+  });
+  $('klChallengeContent').append(grid);
+ }
+ function startMemory(){
+  clearRun();const cards=pool($('klMemoryDeck').value).slice(0,8);
+  if(cards.length<4){alert('Bu mücadele için en az 4 farklı kelime gerekli.');return}
+  play('Hafıza Arenası');
+  const area=$('klChallengeContent'),status=$('klChallengeStatus');
+  const preview=document.createElement('div');preview.className='kl-memory-preview';
+  cards.forEach(c=>{const box=document.createElement('div');const strong=document.createElement('strong');strong.textContent=c.en;const small=document.createElement('small');small.textContent=c.tr;box.append(strong,small);preview.append(box)});
+  area.append(preview);
+  let left=12,idx=0,correct=0;
+  const renderPreview=()=>status.textContent=`Kelimeleri ezberle: ${left} saniye`;
+  renderPreview();
+  clock=setInterval(()=>{
+   left--;renderPreview();
+   if(left<=0){clearInterval(clock);clock=null;ask()}
+  },1000);
+  function ask(){
+   if(idx>=cards.length){finish('Hafıza turu tamamlandı!',`${correct}/${cards.length} doğru cevap`,startMemory);return}
+   area.replaceChildren();
+   const card=cards[idx];status.textContent=`Soru ${idx+1}/${cards.length} · ${correct} doğru`;
+   const question=document.createElement('h3');question.textContent=`“${card.en}” ne demek?`;area.append(question);
+   const distractors=shuffle(cards.filter(c=>c!==card&&norm(c.tr)!==norm(card.tr))).slice(0,3);
+   shuffle([card,...distractors]).forEach(opt=>{
+    const btn=document.createElement('button');btn.type='button';btn.className='kl-memory-choice';btn.textContent=opt.tr;
+    btn.onclick=()=>{
+     const right=opt===card;if(right)correct++;
+     area.querySelectorAll('button').forEach(b=>b.disabled=true);
+     btn.style.borderColor=right?'#42d89a':'#ff777d';
+     timeout=setTimeout(()=>{idx++;ask()},650);
+    };area.append(btn);
+   });
+  }
+ }
+ ids.forEach(([button])=>$(button).addEventListener('click',()=>choose(Object.keys(modes).find(k=>modes[k][0]===button))));
+ $('klMatchStart').addEventListener('click',startMatch);
+ $('klMemoryStart').addEventListener('click',startMemory);
+ $('klChallengeBack').addEventListener('click',()=>choose(active));
+ // Ensure existing navigation to the quiz tab also returns to the mode selector.
+ const quizNav=document.querySelector('[data-tab="quiz"]');
+ if(quizNav)quizNav.addEventListener('click',()=>choose(active));
+ choose('smart');
 })();
 </script></body></html>
