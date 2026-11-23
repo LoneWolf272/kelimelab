@@ -742,6 +742,52 @@ body[data-kl-theme="rgb"] .kl-theme-option.active{outline:2px solid #83c9ff!impo
 body[data-kl-theme="rgb"] .kl-rgb-border{border:2px solid transparent!important;background:linear-gradient(#121c34,#121c34) padding-box,linear-gradient(110deg,#ff4c89,#f9c949,#3bdfa4,#4ca8ff,#b67cff,#ff4c89) border-box!important;background-size:100% 100%,350% 350%!important;animation:kl-rgb-edge 7s linear infinite!important}
 @keyframes kl-rgb-edge{to{background-position:0 0,350% 0}}
 @media(prefers-reduced-motion:reduce){#klSecretLab.kl-secret-burst,.kl-rgb-explosion,.kl-rgb-explosion i,body[data-kl-theme="rgb"] .kl-rgb-border{animation:none!important}}
+
+/* v2: actual full-screen animated RGB, rather than nearly black accent-only mode. */
+@keyframes kl-rgb-flow{0%{background-position:0% 40%}50%{background-position:100% 60%}100%{background-position:0% 40%}}
+@keyframes kl-rgb-border-flow{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+body[data-kl-theme="rgb"]{
+ --kl-bg:#19113d;--kl-panel:#171b48;--kl-raised:#252554;--kl-ink:#fff;--kl-muted:#e1e7ff;--kl-line:#8a80ec;--kl-control:#191d49;--kl-accent:#77e8fa;--kl-on-accent:#08132d;--kl-card:#18224b;--kl-card-edge:#a7a3ff;--kl-card-ink:#fff;--kl-note:#263363;--kl-note-ink:#f3f8ff;--kl-nav:#161b43;--kl-shadow:rgba(16,6,56,.28);
+ color-scheme:dark;
+ background:linear-gradient(125deg,#ff408e 0%,#9a49f7 17%,#386dff 34%,#04c9de 51%,#10c68a 67%,#f2b83b 84%,#ff408e 100%)!important;
+ background-size:350% 350%!important;
+ animation:kl-rgb-flow 13s ease-in-out infinite!important;
+ background-attachment:fixed!important;
+ color:#fff!important;
+}
+body[data-kl-theme="rgb"] :is(header,.panel,.settings-box){
+ background:linear-gradient(115deg,rgba(22,22,65,.94),rgba(36,23,78,.94)) padding-box,linear-gradient(120deg,#ff4b9a,#a979ff,#47b7ff,#30e7bf,#ffce64,#ff4b9a) border-box!important;
+ background-size:100% 100%,350% 350%!important;
+ animation:kl-rgb-border-flow 9s linear infinite!important;
+ border:2px solid transparent!important;
+ box-shadow:0 9px 30px rgba(12,8,48,.28)!important;
+ color:#fff!important;
+}
+body[data-kl-theme="rgb"] .stat{
+ background:linear-gradient(130deg,rgba(24,25,75,.94),rgba(52,28,87,.94)) padding-box,linear-gradient(125deg,#ff6aa8,#ffc861,#44dfbd,#5b9dff,#c18aff,#ff6aa8) border-box!important;
+ background-size:100% 100%,320% 320%!important;
+ animation:kl-rgb-border-flow 8s linear infinite!important;
+ border:2px solid transparent!important;
+ color:#fff!important;
+}
+body[data-kl-theme="rgb"] #studyPanel .flash{
+ background:linear-gradient(145deg,rgba(23,29,77,.96),rgba(37,26,82,.96)) padding-box,linear-gradient(120deg,#f94c9b,#ffc65d,#47dcca,#559fff,#b77cff,#f94c9b) border-box!important;
+ background-size:100% 100%,350% 350%!important;
+ animation:kl-rgb-border-flow 8s linear infinite!important;
+ border:3px solid transparent!important;
+ color:#fff!important;
+ box-shadow:0 10px 30px rgba(12,8,48,.28)!important;
+}
+body[data-kl-theme="rgb"] #studyPanel .flash :is(strong,#word,.example-line,.example-translation,.word-type,small){color:#fff!important;opacity:1!important}
+body[data-kl-theme="rgb"] :is(.stat strong,h1,h2,h3,h4,.panel h2){color:#fff!important}
+body[data-kl-theme="rgb"] :is(p,footer,.muted,.stat small,small,label){color:#e7eaff!important}
+body[data-kl-theme="rgb"] :is(.quest-item,.achievement,.a1-metric,#a1StudySidebar,.a1-progress-panel,#studyPanel .a1-progress-panel,#studyPanel .a1-metric){background:#242451!important;border-color:#8b8ae9!important;color:#fff!important}
+body[data-kl-theme="rgb"] :is(button:not(.flash),select,input,textarea){background-color:#252852!important;color:#fff!important;border-color:#a19aff!important}
+body[data-kl-theme="rgb"] :is(button.primary,nav button.tab-selected){background:#78e9f5!important;color:#081329!important;border-color:#a9faff!important}
+body[data-kl-theme="rgb"] nav{background:linear-gradient(110deg,rgba(34,24,83,.98),rgba(18,35,78,.98))!important;border-top:2px solid #a58fff!important;color:#fff!important}
+body[data-kl-theme="rgb"] .kl-more-menu{background:#242452!important;border-color:#aa9aff!important;color:#fff!important}
+body[data-kl-theme="rgb"] .kl-rgb-border{background:linear-gradient(#20204d,#20204d) padding-box,linear-gradient(120deg,#ff4b9a,#ffc861,#44dfbd,#5b9dff,#c18aff,#ff4b9a) border-box!important;background-size:100% 100%,350% 350%!important;animation:kl-rgb-border-flow 8s linear infinite!important}
+@media(prefers-reduced-motion:reduce){body[data-kl-theme="rgb"],body[data-kl-theme="rgb"] :is(header,.panel,.settings-box,.stat,#studyPanel .flash,.kl-rgb-border){animation:none!important}}
 </style><script id="kl-secret-rgb-activation-v1">
 (function(){
  const lab=document.getElementById('klSecretLab');if(!lab)return;
